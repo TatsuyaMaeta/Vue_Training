@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+        <div id="app1">
+            <p>{{message}}</p>
+            <button @click="message ='ボタンから変更'">テキスト変更</button>
+        </div>
+
+        <!-- テンプレートプロパティ -->
+        <div id="app2"></div>
+
+        <!-- レンダー関数 -->
+        <div id="app3"></div>
+
+        <!-- *************************以下、Vueテンプレート************************* -->
+        <script>
+            let vm1 = new Vue({
+                el: "#app1",
+                data: {
+                    message: "インスタンス１",
+                },
+            });
+
+            new Vue({
+                el: "#app2",
+                data: {
+                    name: "たつや",
+                },
+                template: "<h1>こんにちは{{name}}さん</h1>",
+            });
+
+            new Vue({
+                data: {
+                    name: "たつや",
+                },
+                render: function (createElement) {
+                    // return createElement("h1", "こんにちは,," + this.name+"さん");
+                    return createElement("h1", `こんにちは,,${this.name}さん`);
+                },
+            }).$mount("#app3");
+        </script>
+    </body>
+</html>
