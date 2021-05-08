@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+        <div id="app">
+            <ul>
+                <!-- keyはindexでは指定しない。削除した場合にindexは変わるので、固有の値である値にする -->
+                <div v-for="item in fruits" :key="item">
+                    <p>{{ item }}</p>
+                    <input type="text" />
+                </div>
+            </ul>
+            <button @click="remove">削除ボタン</button>
+        </div>
+
+        <!-- *************************以下、Vueテンプレート************************* -->
+        <script>
+            new Vue({
+                el: "#app",
+                data: {
+                    fruits: ["りんご", "バナナ", "いちご"],
+                    object: {
+                        firstName: "太郎",
+                        lastName: "田中",
+                        age: 21,
+                    },
+                },
+                methods:  {
+                        remove:function (){
+                            this.fruits.shift();
+                    },
+                },
+        });
+        </script>
+    </body>
+</html>
